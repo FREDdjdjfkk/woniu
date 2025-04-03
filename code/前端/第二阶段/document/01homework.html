@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <div>
+        <input type="text" id="username" placeholder="用户名"></input>
+        <input type="text" id="age" placeholder="年龄"></input>
+        <input type="text" id="phonenumber" placeholder="联系方式"></input>  
+    </div>
+
+    <div>
+        <input type="button" value="添加" onclick="add()"></input>
+    </div>
+        <!-- 自定义对话框 -->
+        <dialog id="modifyDialog">
+            <h3>修改信息</h3>
+            <input type="text" id="modifyUsername" placeholder="用户名"></input>
+            <input type="text" id="modifyAge" placeholder="年龄"></input>
+            <input type="text" id="modifyPhonenumber" placeholder="联系方式"></input>
+            <button id="modifySaveButton">保存</button>
+            <button id="modifyCancelButton">取消</button>
+        </dialog>
+    <table id="userTable" margin-top="20px" border="1" cellspacing="0" cellpadding="5" width="100%">
+        <thead>
+            <tr>
+                <th>用户名</th>
+                <th>年龄</th>
+                <th>联系方式</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody style="text-align: center;">
+            <!-- 用户数据将插入到这里 -->
+        </tbody>
+    </table>
+
+    <script>
+        // function add() {
+        //     var username = document.getElementById("username").value;
+        //     var age = document.getElementById("age").value;
+        //     var phonenumber = document.getElementById("phonenumber").value;
+        //     var table = document.getElementById("userTable").getElementsByTagName("tbody")[0];
+        //     var row = table.insertRow();
+
+        //     var cell1 = row.insertCell(0);
+        //     var cell2 = row.insertCell(1);
+        //     var cell3 = row.insertCell(2);
+        //     var cell4 = row.insertCell(3);
+
+        //     cell1.textContent = username;
+        //     cell2.textContent = age;
+        //     cell3.textContent = phonenumber;
+
+        //     // 删除按钮
+        //     var deleteButton = document.createElement("button");
+        //     deleteButton.textContent = "删除";
+        //     deleteButton.onclick = function() {
+        //         table.deleteRow(row.rowIndex - 1);
+        //     };
+        //     cell4.appendChild(deleteButton);
+
+        //     // 修改按钮
+        //     var modifyButton = document.createElement("button");
+        //     modifyButton.textContent = "修改";
+        //     modifyButton.onclick =function(){modify(username,age,phonenumber,cell1, cell2, cell3)};
+        //     cell4.appendChild(modifyButton);
+
+        //     // 清空输入框
+        //     document.getElementById("username").value = "";
+        //     document.getElementById("age").value = "";
+        //     document.getElementById("phonenumber").value = "";
+        // }
+        //     function modify(username,age,phonenumber,cell1, cell2, cell3) {
+        //         var newUsername = prompt("请输入新的用户名", username);
+        //         var newAge = prompt("请输入新的年龄", age);
+        //         var newPhonenumber = prompt("请输入新的联系方式", phonenumber);
+
+        //         if (newUsername && newAge && newPhonenumber) {
+        //             cell1.textContent = newUsername;
+        //             cell2.textContent = newAge;
+        //             cell3.textContent = newPhonenumber;
+        //         }
+        //     }
+
+
+
+    function add() {
+        var username = document.getElementById("username").value;
+        var age = document.getElementById("age").value;
+        var phonenumber = document.getElementById("phonenumber").value;
+        var table = document.getElementById("userTable").getElementsByTagName("tbody")[0];
+
+        var tbody = document.getElementsByTagName("tbody")[0];
+        var tr =document.createElement("tr");
+        var td1 =document.createElement("td");
+        var td2 =document.createElement("td");
+        var td3 =document.createElement("td");
+        var td4 =document.createElement("td");
+        var deleteButton = document.createElement("button");
+        deleteButton.textContent = "删除";
+        deleteButton.onclick = function() {
+            tr.remove();
+        };
+        td4.appendChild(deleteButton);
+        var modifyButton = document.createElement("button");
+        modifyButton.textContent = "修改";
+        var text1=document.createTextNode(username);
+        var text2=document.createTextNode(age);
+        var text3=document.createTextNode(phonenumber);
+        modifyButton.onclick = function() {
+            dialog(text1, text2, text3);
+        };
+        td4.appendChild(modifyButton);
+        td1.appendChild(text1);
+        td2.appendChild(text2);
+        td3.appendChild(text3);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        table.appendChild(tr);
+    }
+    
+    function dialog(text1, text2, text3) {
+        var dialog = document.getElementById("modifyDialog");
+        var modifyUsernameInput = document.getElementById("modifyUsername");
+        var modifyAgeInput = document.getElementById("modifyAge");
+        var modifyPhonenumberInput = document.getElementById("modifyPhonenumber");
+        var modifySaveButton = document.getElementById("modifySaveButton");
+        var modifyCancelButton = document.getElementById("modifyCancelButton");
+        dialog.showModal();
+        modifySaveButton.onclick = function() {
+            text1.nodeValue = modifyUsernameInput.value;
+            text2.nodeValue = modifyAgeInput.value;
+            text3.nodeValue = modifyPhonenumberInput.value;
+            dialog.close();
+        };
+        modifyCancelButton.onclick = function() {
+                dialog.close();
+            };
+
+    }
+
+    </script>
+</body>
+</html>

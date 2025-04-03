@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+                .box{
+            width: 100%;
+            height: 600px;
+            background: aqua;
+            /* position: relative; */
+            overflow: auto;
+        }
+        .box1{
+            width: 200px;
+            height: 200px;
+            background-color: blueviolet;
+            float: left;
+        }
+        .box2{
+            width: 200px;
+            height: 200px;
+            background-color: rgb(0, 255, 128);
+            float: right;
+        }
+        .inline-element {
+        background-color: lightblue;
+        width: 200px;   /* 无效 */
+        height: 50px;    /* 无效 */
+        }
+
+        .float-element {
+        float: left;     /* 触发块级特性 */
+        background-color: lightgreen;
+        width: 200px;    /* 有效 */
+        height: 50px;    /* 有效 */
+        margin-top: 10px; /* 增加间距便于观察 */
+        }
+        .block-element {
+            background-color: lightblue;
+            margin: 10px 0;
+            padding: 10px;
+        }
+
+        .float-left {
+            float: left;
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="box">
+            <div class="box1"></div>
+            <div class="box2"></div>
+            
+                    <!-- 普通行内元素（无法设置宽高） -->
+        <span class="inline-element">行内元素（无浮动）</span>
+
+        <!-- 浮动后的行内元素（可以设置宽高） -->
+        <span class="float-element">浮动后的行内元素</span>
+        <div class="block-element">
+            这是一个普通块级元素，没有设置宽度，也没有浮动。它会根据它的父容器宽度自动调整。
+        </div>
+                <!-- 块级元素设置浮动 -->
+                <div class="block-element float-left">
+                    这是一个设置了浮动的块级元素。可以看到，虽然未明确设置宽度，但它的宽度由内容宽度决定，不再扩展到父容器的100%。
+                </div>
+        
+                <!-- 内容较多的浮动块 -->
+                <div class="block-element float-left">
+                    该块级元素含有更多文本，足以撑开宽度。它仍然没有设置宽度，宽度由内容决定。
+                    这是一个测试，这是一个测试，这是一个测试，这是一个测试，这是一个测试。
+                </div>
+        </div>
+
+    </div>
+</body>
+</html>

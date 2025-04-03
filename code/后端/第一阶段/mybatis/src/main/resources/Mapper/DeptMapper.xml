@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mapper.DeptMapper">
+    <resultMap id="DeptresultMap" type="pojo.Dept">
+        <id column="id" property="id"/>
+        <result property="number" column="number"/>
+        <association property="employee"></association>
+    </resultMap>
+
+    <sql id="condition">
+        <where>
+            <if test="name!=null and name!=''">
+                and name =#{name}
+            </if>
+            <if test="id!=null">
+                and id =#{id}
+            </if>
+            <if test="companyId !=null">
+                and companyId =#{companyId}
+            </if>
+        </where>
+    </sql>
+
+    <select id="findCondition" resultMap="DeptresultMap" parameterType="Dept">
+        select * from department
+        <include refid="condition"></include>
+    </select>
+</mapper>

@@ -1,0 +1,22 @@
+body {
+    background-image:url('black-earth.jpg');
+}
+span {
+    color: white;
+    font-size: 15px;
+    vertical-align: bottom;
+    
+}
+
+.icon {
+    width: 30px;
+    vertical-align: bottom;
+}
+
+.logo {
+    width: 150px;
+}
+
+table {
+    width: 100%;
+}

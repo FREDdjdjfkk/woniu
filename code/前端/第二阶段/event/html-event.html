@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="get" >
+        <label for="username">用户名</label>
+        <input type="text" id="username" name="username" placeholder="请输入用户名"><br><br>
+        <label for="pwd">密码</label>
+        <input type="password" id="pwd" name="pwd" placeholder="请输入密码" onmouseover="remind()"><br><br>
+        <input type="button" value="提交" onclick="submit()"></input>
+    </form>
+    <script>
+        function submit() {
+            var username = document.getElementById("username").value;
+            var pwd = document.getElementById("pwd").value;
+            if (username === "" || pwd === "") {
+                alert("用户名和密码不能为空！");
+                return;
+            }
+            console.log("用户名: " + username);
+            console.log("密码: " + pwd);
+        }
+        function remind() {
+            alert("请输入密码！");
+            
+        }
+    </script>
+    
+</body>
+</html>

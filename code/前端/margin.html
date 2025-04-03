@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 50vh;
+        }
+        .box{
+            width: 400px;
+            height: 800px;
+            background: aqua;
+            /* position: relative; */
+            overflow: auto;
+        }
+        .box1{
+            width: 200px;
+            height: 200px;
+            background: orange;
+            /* position: absolute; */
+            margin: calc((800px - 200px)/2) auto;
+            padding:  50px ;
+
+        }
+        .box2{
+            width: 100px;
+            height: 100px;
+            background:  rgb(255, 255, 255);
+            border-top: 30px radius ;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box1">
+            填充
+            <div class="box2"></div>
+        </div>
+
+    </div>
+</body>
+</html>

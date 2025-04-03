@@ -1,0 +1,41 @@
+<html>
+
+
+<body>
+    <!-- border是表格的边框  -->
+    <!-- align控制表格的对齐方式 默认left -->
+    <!-- bgcolor设置表格背景颜色 可以是颜色单词 也可以是十六进制-->
+    <!-- cellspancing设置单元格之间的间距 -->
+    <!-- cellpading设置单元格中内容与边框的间距 -->
+    <table border="1"  width="200px" height="" align="center">
+        <!-- <tr>是表格的一行 -->
+        <!--td是表格的一栏 --> 
+        <!-- th是表头默认居中 -->
+        <thead>
+            <tr>
+                <th colspan="3">个人信息</th>                
+            </tr>            
+        </thead>
+        <tbody>
+            <tr height="10px">
+                <!-- tr的bgcolor设置整行的背景颜色 -->
+                <td width ="50px">姓名</td>
+                <!-- td的height设置整列的宽度
+                    td的height设置整行的高度 -->
+                <td>年龄</td>
+                <td rowspan="2">性别</td>
+            <tr>
+                <td colspan="2">张三</td>
+                <!-- <td>18</td> -->
+                <!-- <td>男</td> -->
+            </tr>
+        </tbody>
+
+        <tfoot>
+            <td>foot</td>
+            <td>foot</td>
+            <td>foot</td>
+        </tfoot>
+    </table>
+</body>
+</html>

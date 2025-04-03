@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<!-- 两行一列表格 -->
+	 <form action="">
+		<table border="1px" width="980px"  align="center" cellspacing="0px">
+			<tr height="40px">
+				<td bgcolor="#278abc">     
+				  &nbsp;&nbsp;	账户信息
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<!-- 再次嵌套表格 -->
+					 <!-- 7行3列 -->
+					  <!-- 宽度设置百分比，参考父元素的宽度 -->
+					  <table width="100%"  cellspacing="10px">
+						<tr>
+							<td width="40%" align="right">
+								<span style="color: red;">*</span>
+								<label for="">用户名</label>
+							</td>
+							<td>
+								<input type="text" placeholder="用户名设置后不可更改">
+							</td>
+							<td  width="40%" style="color: orange;font-size: 12px;">
+								6-30位字母、数字或“_”,字母开头
+							</td>
+						</tr>
+	
+						<tr>
+							<td width="40%" align="right">
+								<span style="color: red;">*</span>
+								<label for="">登录密码</label>
+							</td>
+							<td>
+								<input type="password" placeholder="6~20个字母或数字">
+							</td>
+							<td  width="40%" style="color: orange;font-size: 12px;">
+								密码错误
+							</td>
+						</tr>
+	
+						<tr>
+							<td width="40%" align="right">
+								<span style="color: red;">*</span>
+								<label for="">确认密码</label>
+							</td>
+							<td>
+								<input type="password" placeholder="6~20个字母或数字">
+							</td>
+							<td  width="40%" style="color: orange;font-size: 12px;">
+							 
+							</td>
+						</tr>
+	
+						<tr>
+							<td width="40%" align="right">
+								<span style="color: red;">*</span>
+								<label for="">证件类型</label>
+							</td>
+							<td>
+								 <select name="" id="" style="width: 170px; height: 24px;">
+									<option value="sf">身份证</option>
+									<option value="js">驾驶证</option>
+								 </select>
+							</td>
+							<td  width="40%" style="color: orange;font-size: 12px;">
+								证件填写规则
+							</td>
+						</tr>
+	
+						<tr>
+							<td width="40%" align="right">
+								<span style="color: red;">*</span>
+								<label for="">性别</label>
+							</td>
+							<td>
+								<input type="radio" name="gender" id="boy"><label for="boy">男</label>
+								<input type="radio" name="gender" id="girl"><label for="girl">女</label>
+							</td>
+							<td  width="40%" style="color: orange;font-size: 12px;">
+								证件填写规则
+							</td>
+						</tr>
+	
+						<tr>
+							<td width="40%" align="right">
+								 
+							</td>
+							<td colspan="2">
+							  <input type="checkbox">
+							  我已阅读并同意遵守
+							  <a href="" style="font-size: 13px;">《中国铁路客户服务中心网站服务条款》 《隐私权政策》</a>
+							</td>
+							 
+						</tr>
+	
+						<tr height="80px">
+							<td width="40%" align="right"></td>
+							<td>
+								<button style="background-color: orange;">下一步</button>
+							</td>
+							<td width="40%"></td>
+						</tr>
+					  </table>
+				</td>
+			</tr>
+		 </table>
+	 </form>
+
+</body>
+</html>

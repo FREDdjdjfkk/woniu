@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 创建时一个2行1列的表格 -->
+    <table border="1px" width="980px" align="center" cellspacing="0px">
+        <tr height="40px">
+            <td bgcolor="#278abc">&nbsp;账户信息</td>
+        </tr>
+        <tr>
+            <td>
+                <!-- 创建一个n行3列的表格 -->
+                <!-- 宽度设置百分比是参考父标签的宽度 -->
+                <table border="0px" width="100%" cellspacing="15px">
+                    <tr>
+                        <td width="40%" align="right">
+                            <span style="color: red;">*</span> 用 户 名:
+                        </td>
+                        <td width="20%" align="center">
+                            <input type="text" placeholder="用户名设置后不可更改">
+                        </td>
+                        <td width="40%" style="color: orange;font-size: 13px;">
+                            6-30位字母、数字或“_”,字母开头
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="40%" align="right">
+                            <span style="color: red;">*</span> 登录密码:
+                        </td>
+                        <td width="20%" align="center">
+                            <input type="password" placeholder="6-20为数组或字母">
+                        </td>
+                        <td width="40%" style="color: orange;font-size: 13px;">
+                            密码错误
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="40%" align="right">
+                            <span style="color: red;">*</span> 确认密码:
+                        </td>
+                        <td width="20%" align="center">
+                            <input type="password" placeholder="6-20为数组或字母">
+                        </td>
+                        <td width="40%" style="color: orange;font-size: 13px;">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="40%" align="right">
+                            <span style="color: red;">*</span> 证件类型:
+                        </td>
+                        <td width="20%" align="center">
+
+                            <select name="" id="" style="width:169px;height: 24px;">
+                                <option value="">身份证</option>
+                                <option value="">学生证</option>
+                                <option value="">军官证</option>
+                            </select>
+                        </td>
+                        <td width="40%" style="color: orange;font-size: 13px;">
+                            证件填写规则
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="40%" align="right">
+                            <span style="color: red;">*</span> 性别:
+                        </td>
+                        <td width="20%" align="center">
+                            <input type="radio" name="gender" id="man"> <label for="man">男</label>
+                            <input type="radio" name="gender" id="woman"> <label for="woman">女</label>
+                        </td>
+                        <td width="40%" style="color: orange;font-size: 13px;">
+                            证件填写规则
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="40%" align="right">
+
+                        </td>
+                        <td width="60%" colspan="2">
+                            &nbsp;
+                            <input type="checkbox">
+                            我已阅读并同意遵守 <a href="" style="color: blue;font-size: 13px;">《中国铁路客户服务中心网站服务条款》 《隐私权政策》</a>
+                        </td>
+                        <!-- <td width="40%" style="color: orange;font-size: 13px;">
+                            证件填写规则
+                        </td> -->
+                    </tr>
+
+                    <tr height="80px">
+                        <td width="40%" align="right">
+
+                        </td>
+                        <td width="20%">
+                            <!-- background-color：设置背景颜色 -->
+                            <button style="background-color:orange;">下一步</button>
+                        </td>
+                        <td width="40%" style="color: orange;font-size: 13px;">
+
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

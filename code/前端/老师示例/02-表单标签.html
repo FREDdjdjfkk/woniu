@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<form action="./01-表格合并作业.html" method="">
+		<!-- action：设置提交数据的服务器的地址
+		 method：设置提交数据的方式
+		 get：从服务器获取数据，提交数据给服务器的功能，数据会显示在url地址栏上
+		 post：提交数据给服务器，数据不会显示在地址栏上
+		-->
+
+		<label for="user">普通输入框</label>
+		<input type="text" id="user" placeholder="请输入用户名" value="123ddd" name="username">
+		<!--
+		 placeholder：设置提示信息  
+		 value:设置输入框的默认值，提交的具体数据
+		 name:提示数据的类型
+		 readonly：设置只读
+		 disabled：设置禁用
+		 required:必填
+-->
+		<br>
+		<label>只读输入框</label>
+		<input type="text" readonly value="只读" name="readonly">
+
+		<br>
+		<label>禁用输入框</label>
+		<input type="text" disabled value="禁用" name="dis">
+		<br>
+		<label for="">密码输入框</label>
+		<input type="password" required>
+		<br>
+
+		<!-- 数字输入框，只允许输入数字 -->
+		<label for="">数字输入框</label>
+		<input type="number">
+
+		<br>
+		<!-- 邮箱输入框 ,可以提供简单的邮箱格式验证-->
+		<label for="">邮箱输入框</label>
+		<input type="email">
+
+		<br>
+		<!-- 文件上传 ,默认只能上传一个文件，可以在标签上设置multiple属性控制多个-->
+		<label for="">文件上传</label>
+		<input type="file" multiple>
+
+		<br>
+		<!-- 时间控件 -->
+
+		<!-- 年月日 -->
+		<label for="">日期</label>
+		<input type="date">
+
+		<br>
+		<!-- 年月 -->
+		<label for="">年月</label>
+		<input type="month">
+
+		<br>
+		<!-- 某一年的第几周 -->
+		<label for="">周数</label>
+		<input type="week">
+
+		<br>
+		<!-- 单选按钮 -->
+		<!-- 
+		单选框需要设置相同的name才能进行绑定，才可以实现单选效果
+		label：通过标签上的for属性指定对应表单标签的id名，可以实现点击label中的内容控制对应id的标签获取焦点
+
+
+		单选和多选可以添加checked设置默认选中
+		 -->
+		<label for="man">男</label>
+		<input type="radio" name="gender" id="man" value="man" checked>
+		<label for="woman">女</label>
+		<input type="radio" name="gender" id="woman" value="woman">
+		<br>
+		<!-- 多选按钮 -->
+		爱好:
+		<label for="">吃饭</label> <input type="checkbox" name="likes" value="eat" checked>
+		<label for="">睡觉</label> <input type="checkbox" name="likes" value="sleep">
+
+
+		<br>
+		<!-- 下拉列表 -->
+		<!-- 
+		下拉列表默认选中第一个选项，在option上添加selected属性控制默认值
+		下拉列表默认只能选中一个选项，在select标签上添加multiple属性，控制多选
+		 -->
+		<label for="">血型</label>
+		<select name="" id="" multiple>
+			<option value="">o型</option>
+			<option value="" selected>a型</option>
+			<option value="">b型</option>
+		</select>
+
+		<br>
+		<!-- 文本域 -->
+		<!-- 
+		rows：设置显示行数
+		cols：一行显示的字符个数
+		 -->
+		<textarea name="" id="" rows="20" cols="50"></textarea>
+
+		<br>
+		<input type="submit" value="提交1">
+		<input type="reset" value="重置">
+		<input type="button" value="普通按钮">
+		<button type="submit" disabled>提交</button>
+	</form>
+</body>
+
+</html>

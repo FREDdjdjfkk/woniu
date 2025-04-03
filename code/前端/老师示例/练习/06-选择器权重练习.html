@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/10-选择器权重练习.css">
+    <style>
+        div {
+            color: red;
+        }
+
+        .box {
+            color: blue;
+        }
+
+        p {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">div1文本是什么颜色 --blue</div>
+    <p class="box text">p1文本是什么颜色--blue</p>
+    <div class="box" id="item" style="color:cyan;">div2文本是什么颜色--cyan</div>
+    <div>
+        <p>p2文本是什么颜色--绿色</p>
+    </div>
+    <div class="box" id="item1">
+        div3文本是什么颜色 --rosybrown
+        <p class="text">p3文本是什么颜色-purple</p>
+        <span>span文本是什么颜色--rosybrown</span>
+    </div>
+</body>
+
+</html>

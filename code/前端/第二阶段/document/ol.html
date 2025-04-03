@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="add" placeholder="添加的内容"></input>
+    <input type="button"  value="添加" onclick="add()"></input>
+    <input type="button" value="删除" onclick="del()"></input>
+    <input type="button" value="插入" onclick="insert()"></input>
+    <input type="button" value="替换" onclick="replace()"></input>
+    <ol id="ol">
+        <li>aaa</li>
+        <li>bbb</li>
+        <li>ccc</li>
+    </ol>
+
+
+    <script>
+        function replace(){
+            var ol=document.getElementById("ol");
+            var li=ol.getElementsByTagName("li");
+            // var newli=document.getElementById("add").value;
+            var text=document.createTextNode("成都市");
+            //替换第一个li元素的内容
+            li[0].replaceChild(text,li[0].childNodes[0]);
+        }
+        function insert(){
+            var ol=document.getElementById("ol");
+            var li=ol.getElementsByTagName("li");
+            // var newli=document.getElementById("add").value;
+            var text=document.createTextNode("南充市");
+            var li1=document.createElement("li");
+            li1.appendChild(text);  
+            ol.insertBefore(li1,li[0]);
+        }
+        function add(){
+            //创建一个li元素
+            var li=document.createElement("li");
+            var newli=document.getElementById("add").value;
+            var text=document.createTextNode(newli);
+            //appendChild()方法向指定元素添加一个或多个子节点。
+            //textNode是一个文本节点，表示文本内容。
+            li.appendChild(text);
+            var ol=document.getElementById("ol");
+            ol.appendChild(li);
+        }
+        function del(){
+            var ol=document.getElementById("ol");
+            //返回li标签的集合
+            var li=ol.getElementsByTagName("li");
+            //删除最后一个li元素
+            ol.removeChild(li[li.length-1]);
+            newli=document.getElementById("add").value="";
+        }
+    </script>
+</body>
+</html>

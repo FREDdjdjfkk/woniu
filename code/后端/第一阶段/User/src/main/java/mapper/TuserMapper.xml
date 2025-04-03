@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.TUserMapper" >
+    <resultMap id="tusermapper" type="pojo.TUser">
+        <id property="uid" column="uid"/>
+
+        <result column="uname" property="username"/>
+        <result column="password" property="password"/>
+        <result column="email" property="email"/>
+        <result column="telphone" property="telephone"/>
+       <association property="userDetails" javaType="pojo.UserDetails">
+            <id property="uid" column="uid"/>
+           <result column="realname" property="realname"/>
+           <result column="imgpath" property="imgpath"/>
+           <result column="signature" property="signature"/>
+       </association>
+    </resultMap>
+
+
+    <resultMap id="user_order" type="pojo.TUser">
+        <id property="uid" column="uid"/>
+
+        <result column="uname" property="username"/>
+        <result column="password" property="password"/>
+        <result column="email" property="email"/>
+        <result column="telphone" property="telephone"/>
+        
+        <collection property="ordersList" ofType="pojo.Orders">
+            <id property="oid" column="oid"/>
+            <result column="order_date" property="order_date" />
+            <result column="money" property="money"/>
+            <result column="desc" property="desc"/>
+            <result column="uid" property="uid"/>
+        </collection>
+    </resultMap>
+    <select id="getdetails" resultMap="tusermapper">
+        select * from t_user u
+        join userdetails ud on u.uid = ud.uid
+        where u.uid=#{u.uid}
+    </select>
+    
+    <select id="findbyid" resultMap="user_order">
+        select * from t_user u join t_order o on u.uid=o.uid where o.uid=#{o.uid};
+    </select>
+
+
+
+
+</mapper>

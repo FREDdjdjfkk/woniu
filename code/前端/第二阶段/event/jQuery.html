@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <title>Dialog Example</title>
+</head>
+<body>
+  <div>
+    <input type="text" id="username" placeholder="用户名">
+    <input type="text" id="age" placeholder="年龄">
+    <input type="text" id="phonenumber" placeholder="联系方式">
+  </div>
+  <div>
+    <input type="button" value="添加" onclick="addData()">
+  </div>
+
+  <!-- 自定义对话框 -->
+  <dialog id="modifyDialog">
+    <h3>修改信息</h3>
+    <input type="text" id="modifyUsername" placeholder="用户名">
+    <input type="text" id="modifyAge" placeholder="年龄">
+    <input type="text" id="modifyPhonenumber" placeholder="联系方式">
+    <button id="modifySaveButton">保存</button>
+    <button id="modifyCancelButton">取消</button>
+  </dialog>
+
+  <table id="userTable" border="1" cellspacing="0" cellpadding="5" width="100%">
+    <thead>
+      <tr>
+        <th>用户名</th>
+        <th>年龄</th>
+        <th>联系方式</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody style="text-align: center;">
+      <!-- 用户数据插入到这里 -->
+    </tbody>
+  </table>
+  <script>
+    // 添加数据
+    function addData() {
+      $("<tr/>").append("<td>" + $("#username").val() + "</td>")
+        .append("<td>" + $("#age").val() + "</td>")
+        .append("<td>" + $("#phonenumber").val() + "</td>")
+        .append("<td><button onclick='modify(this)'>修改</button> <button onclick='deleteRow(this)'>删除</button></td>")
+        .appendTo("#userTable tbody");
+  
+      // 清空输入框
+      $("#username").val("");
+      $("#age").val("");
+      $("#phonenumber").val("");
+    }
+  
+    // 删除数据
+    function deleteRow(button) {
+      $(button).closest("tr").remove();
+    }
+  
+    // 修改数据
+    function modify(button) {
+      var $row = $(button).closest("tr");
+  
+      $("#modifyUsername").val($row.find("td:nth-child(1)").text());
+      $("#modifyAge").val($row.find("td:nth-child(2)").text());
+      $("#modifyPhonenumber").val($row.find("td:nth-child(3)").text());
+  
+      $("#modifyDialog").data("targetRow", $row);
+      document.getElementById("modifyDialog").showModal();
+    }
+  
+    // 保存修改
+    $("#modifySaveButton").click(function () {
+      var $row = $("#modifyDialog").data("targetRow");
+      $row.find("td:nth-child(1)").text($("#modifyUsername").val());
+      $row.find("td:nth-child(2)").text($("#modifyAge").val());
+      $row.find("td:nth-child(3)").text($("#modifyPhonenumber").val());
+  
+      document.getElementById("modifyDialog").close();
+    });
+  
+    // 取消修改
+    $("#modifyCancelButton").click(function () {
+      document.getElementById("modifyDialog").close();
+    });
+  </script>
+  
+</body>
+</html>

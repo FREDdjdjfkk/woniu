@@ -1,0 +1,63 @@
+<html>
+<body>
+    <!-- method默认get类型 -->
+    <form action="./01html.html" method="">
+        <!-- for用于聚焦id，点击文本聚焦该id的输入框 ,input的value设置输入框的默认值 ,name是提交数据的类型-->
+        <label for="user">账号</label>
+        <input type="text" id="user" value="admin" name="username" required>
+        <br>
+        <label for="">密码</label>
+        <input type="password" value="123456" required>
+        <br>
+        <label for="">只读输入框</label>
+        <input type="text" name="" id="" readonly value="readonly">
+        <br>
+        <label for="">禁用</label>
+        <input type="text" name="" id="" disabled>
+        <br>
+        <!-- 数字输入框，只允许输入数字 -->
+        <label for="">数字</label>
+        <input type="number" name="number" value="23">
+        <br>
+        <!-- 邮箱输入框，提供简单的邮箱格式认证 -->
+        <label for="">邮箱</label>
+        <input type="email" value="123@qq.com">
+        <br>
+        <!-- 文件上传，默认上传一个 -->
+        <label for="">上传文件</label>
+        <input type="file" multiple>
+        <br>
+        <!-- 时间控件 -->
+        <label for="">日期</label>
+        <input type="date">
+        <br>
+        <label for="">年月</label>
+        <input type="month">
+        <br>
+        <label for="">周数</label>
+        <input type="image">
+        <br>
+        <!-- 单选列表 -->
+        <label for="">男</label>
+        <!-- checked默认选中 -->
+        <input type="radio" name="gender" value="male" checked>
+        <label for="">女</label>
+        <input type="radio" name="gender" value="famale">
+        <br>
+        <!-- 下拉列表 -->
+        <label for="">爱好</label>
+            <select name="number" >
+                <option value="1"checked>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        <br>
+        <!-- 文本域 -->
+        <textarea name="" id="" rows="10" cols="50"></textarea>
+        <br>
+        <input type="submit">
+    </form>
+
+</body>
+
+</html>

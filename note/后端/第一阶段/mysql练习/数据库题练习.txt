@@ -1,0 +1,365 @@
+增：-------------------------------------------------
+使用insert into 语句为数据库的每张表新增一条数据
+
+删：-------------------------------------------------
+使用delete语句，为数据库的每张表删除一条数据
+
+改：-------------------------------------------------
+使用update语句，为数据库的每张表更新一条数据
+
+查：-------------------------------------------------
+1）查询员工表的所有数据
+
+SELECT * FROM employee;
+
+2）查询员工表的所有数据，并使用中文的列名显示
+
+SELECT 
+    id         AS '编号',
+    name       AS '名字',
+    location    AS '住址',
+    ismale     AS '性别',
+    joinDate  AS '入职日期',
+    salary     AS '薪水',
+    deptId AS '部门'
+FROM employee
+
+3）查询员工表的所有数据，并使用中文的列名显示，同时，性别列要显示男或女，而不是数字1或0
+
+SELECT 
+    id         AS '编号',
+    name       AS '名字',
+    location   AS '住址',
+    CASE ismale WHEN 1 THEN '男' ELSE '女' END AS '性别',
+    joinDate   AS '入职日期',
+    salary     AS '薪水',
+    deptId     AS '部门'
+FROM employee;
+
+4）查询所有未填写地址(null)的员工
+
+SELECT * FROM employee  WHERE location IS NULL ;
+
+5）查询所有姓张的员工
+
+SELECT * FROM employee  WHERE name like '张%' ;
+
+6）查询所有居住在天府三街的女员工
+
+SELECT * FROM employee  WHERE `location` like '天府三街' and ismale = 0;
+
+7）查询所有居住在春熙路的男员工，并按照入职时间的升序排序
+
+SELECT * FROM employee  WHERE `location` = '春熙路' and ismale = 1 ORDER BY joinDate ASC ;
+
+8）显示出所有员工的姓名、性别（使用男或女显示）、入职时间、薪水、所属部门（显示部门名称）、所属公司（显示公司名称）
+
+SELECT 
+    employee.name AS '姓名',
+    CASE employee.ismale WHEN 1 THEN '男' ELSE '女' END AS '性别',
+    employee.joinDate AS '入职时间',
+    employee.salary AS '薪水',
+    department.name AS '部门',
+    company.name AS '公司'
+FROM employee
+LEFT JOIN (department LEFT JOIN company ON department.companyId=company.id)
+    ON employee.deptId = department.id
+
+9）查询成都蜗牛学苑的所有员工姓名、性别、入职时间
+
+SELECT  employee.`name` ,case ismale WHEN 1 then '男'else '女'end as gender,joinDate FROM employee LEFT JOIN (department LEFT JOIN company ON department.companyId=company.id)
+    ON employee.deptId = department.id
+WHERE company.`name`LIKE'%蜗牛学苑%';
+
+10）查询成都蜗牛学苑教学部的所有员工姓名、性别、入职时间
+
+SELECT  employee.`name` ,case ismale WHEN 1 then '男'else '女'end as gender,joinDate FROM employee LEFT JOIN (department LEFT JOIN company ON department.companyId=company.id)
+    ON employee.deptId = department.id
+WHERE company.`name`LIKE'%蜗牛学苑%' and deptId =8;
+
+11）查询成都蜗牛学苑教学部的员工数量
+
+SELECT  COUNT(*) FROM employee LEFT JOIN (department LEFT JOIN company ON department.companyId=company.id)
+    ON employee.deptId = department.id
+WHERE company.`name`LIKE'%蜗牛学苑%' and deptId =8;
+
+12）查询成都蜗牛学苑每月的总支出薪水
+
+SELECT  SUM(salary) FROM employee LEFT JOIN (department LEFT JOIN company ON department.companyId=company.id)
+    ON employee.deptId = department.id
+WHERE company.`name`LIKE'%蜗牛学苑%' ;
+
+13）查询成都蜗牛学苑每月市场部的总支出薪水
+
+SELECT  SUM(salary) FROM employee LEFT JOIN (department LEFT JOIN company ON department.companyId=company.id)
+    ON employee.deptId = department.id
+WHERE company.`name`LIKE'%蜗牛学苑%' AND deptId=7;
+
+14）同时显示出所有公司员工的平均工资、最高工资、最低工资
+
+SELECT AVG(salary),MAX(salary),MIN(salary) FROM employee;
+
+15）同时显示出成都蜗牛学苑所有员工的平均工资、最高工资、最低工资
+
+SELECT AVG(salary),MAX(salary),MIN(salary) FROM employee LEFT JOIN (department LEFT JOIN company ON department.companyId=company.id)
+    ON employee.deptId = department.id
+		WHERE company.`name`LIKE'%蜗牛学苑%' ;
+
+16）同时显示出成都蜗牛学苑所有教学部员工的平均工资、最高工资、最低工资
+
+SELECT AVG(salary),MAX(salary),MIN(salary) FROM employee LEFT JOIN (department LEFT JOIN company ON department.companyId=company.id)
+    ON employee.deptId = department.id
+		WHERE company.`name`LIKE'%蜗牛学苑%' and deptId =8;
+
+17）查询所有公司5年内入职的所有男员工
+
+SELECT * FROM employee WHERE ismale=1 AND joinDate  BETWEEN '2020-01-01' AND '2025-12-31';
+
+18）查询所有公司5年内入职的居住在万家湾的女员工数量
+
+SELECT * FROM employee WHERE ismale=0 AND joinDate  BETWEEN '2020-01-01' AND '2025-12-31' and location='万家湾';
+
+19）列出所有公司员工居住的地址（要去掉重复）
+
+SELECT DISTINCT location FROM employee ;
+
+20）查询成都蜗牛学苑所有员工分布在多少个地方（计算居住地的数量，去掉重复）
+
+SELECT count(DISTINCT employee.location )
+ FROM employee LEFT JOIN (department LEFT JOIN company ON department.companyId=company.id)
+    ON employee.deptId = department.id
+		WHERE company.`name`LIKE'%蜗牛学苑%'  ;
+
+
+
+21）查询薪水在10000-15000的员工信息
+
+SELECT * FROM employee WHERE salary between 10000 AND	15000;
+
+22）查询成都蜗牛学苑教职部、市场部、教学部的所有员工信息，信息中要显示部门名称
+
+SELECT *
+ FROM employee LEFT JOIN (department LEFT JOIN company ON department.companyId=company.id)
+    ON employee.deptId = department.id
+		WHERE company.`name`LIKE'%蜗牛学苑%' and deptId IN(7,8,9) ;
+
+23）查询所有薪水在10000以上的员工，找到后按照薪水的降序排序，然后分页（pagesize：10，pageindex：3），查询结果要显示出员工的：姓名、性别（男或女）、入职时间、薪水、所属部门（显示部门名称）
+
+SELECT employee.name '姓名',case ismale when 1 THEN '男'else '女' END '性别' ,joinDate '入职时间',salary '薪水',department.name '所属部门'
+ FROM employee LEFT JOIN department
+    ON employee.deptId = department.id
+		WHERE salary>10000 and deptId  ORDER BY  salary DESC 
+		LIMIT 3,10;
+
+
+
+24）查询结果的列名为：编号、名称、地址，结果的第一行显示成都飞逸销售部的部门数据，第二行开始显示销售部的所有员工数据，员工的名称前面要加上"--"
+
+SELECT 
+    department.id AS 编号,
+    department.name AS 名称,
+    company.location AS 地址
+FROM department
+LEFT JOIN company 
+    ON department.companyId = company.id
+WHERE company.name LIKE '成都飞逸%' 
+  AND department.name = '销售部'
+      
+UNION ALL
+    
+SELECT 
+    employee.id AS 编号,
+    CONCAT('--', employee.name) AS 名称,
+    employee.location AS 地址
+FROM employee
+LEFT JOIN department 
+    ON employee.deptId = department.id
+LEFT JOIN company 
+    ON department.companyId = company.id
+WHERE company.name LIKE '成都飞逸%' 
+  AND department.name = '销售部';
+ORDER BY t.sort_order, t.编号;
+
+
+
+25）查询结果有2列：公司名、公司人数
+
+SELECT c.name '公司名',count(c.name) '公司人数' from company c LEFT JOIN department d ON	companyId=c.id
+left JOIN employee e on deptId=d.id
+GROUP BY c.`name`
+
+26）查询结果有3列：公司名、部门名、部门人数
+
+SELECT c.name '公司名',d.`name`'部门名',d.number'部门人数' from company c LEFT JOIN department d ON	companyId=c.id
+
+27）查询结果有2列：公司名、薪水高于10000的员工人数
+
+SELECT c.name '公司名',COUNT(salary) 人数 from company c LEFT JOIN department d ON	companyId=c.id
+left JOIN employee e on deptId=d.id
+WHERE e.salary>10000
+GROUP BY c.name;
+
+28）查询员工人数大于200的公司信息
+
+SELECT c.*
+FROM company c
+LEFT JOIN department d ON d.companyId = c.id
+LEFT JOIN employee e ON e.deptId = d.id
+GROUP BY c.id, c.name, c.location  -- 
+HAVING COUNT(*) > 200;
+
+29）查询成都蜗牛学苑员工人数大于50的部门信息
+
+SELECT  d.*
+FROM company c
+LEFT JOIN department d ON d.companyId = c.id
+WHERE c.`name` like '成都蜗牛%' AND d.number>50;
+
+30）查询成都蜗牛学苑每个部门的员工人数，使用以下的格式显示：公司名	市场部	教职部	教学部	财务部
+
+SELECT 
+    c.name AS 公司名,
+    COUNT(CASE WHEN d.name = '市场部' THEN e.id END) AS 市场部,
+    COUNT(CASE WHEN d.name = '教职部' THEN e.id END) AS 教职部,
+    COUNT(CASE WHEN d.name = '教学部' THEN e.id END) AS 教学部,
+    COUNT(CASE WHEN d.name = '财务部' THEN e.id END) AS 财务部
+FROM company c
+LEFT JOIN department d ON d.companyId = c.id
+LEFT JOIN employee e ON e.deptId = d.id
+WHERE c.name LIKE '成都蜗牛%'
+GROUP BY c.name;
+
+31）查询公司规模在100-200人之间的所有员工
+
+SELECT
+*
+FROM employee e
+LEFT JOIN department d ON e.deptId = d.id
+LEFT JOIN company c ON d.companyId = c.id
+WHERE c.id IN (
+    SELECT c.id
+    FROM company c
+    JOIN department d ON d.companyId = c.id
+    GROUP BY c.id
+    HAVING SUM(d.number) BETWEEN 100 AND 200
+)
+
+32）查询所有薪水在10000以上的员工，找到后按照薪水的降序排序，然后分页（pagesize：10，pageindex：3），查询结果要显示出员工的：姓名、性别（男或女）、入职时间、薪水、所属部门（显示部门名称）
+
+SELECT employee.name '姓名',case ismale when 1 THEN '男'else '女' END '性别' ,joinDate '入职时间',salary '薪水',department.name '所属部门'
+ FROM employee LEFT JOIN department
+    ON employee.deptId = department.id
+		WHERE salary>10000 
+			ORDER BY  salary DESC 
+		LIMIT 3,10;
+
+33）查询公司规模在100-200人之间的所有员工，并分页显示（pagesize：5，pageindex：4）
+
+SELECT
+*
+FROM employee e
+LEFT JOIN department d ON e.deptId = d.id
+LEFT JOIN company c ON d.companyId = c.id
+WHERE c.id IN (
+    SELECT c.id
+    FROM company c
+    JOIN department d ON d.companyId = c.id
+    GROUP BY c.id
+    HAVING SUM(d.number) BETWEEN 100 AND 200
+)
+LIMIT 4, 5;
+
+34）查询每个公司的员工平均工资
+
+SELECT c.name,COUNT(e.salary)
+FROM company c
+JOIN department d ON c.id=d.companyId
+JOIN employee e ON e.deptId=d.id
+GROUP BY c.`name`;
+
+35）查询成都蜗牛学苑公司里比它平均工资高的员工
+
+SELECT
+e.*
+FROM employee e
+LEFT JOIN department d ON e.deptId = d.id
+LEFT JOIN company c ON d.companyId = c.id
+WHERE c.name LIKE '成都蜗牛%' AND e.salary > ( SELECT AVG(salary) FROM employee);
+
+37）查询成都蜗牛学苑公司教学部中比教学部平均工资高的员工
+
+SELECT
+e.*
+FROM employee e
+LEFT JOIN department d ON e.deptId = d.id
+LEFT JOIN company c ON d.companyId = c.id
+WHERE c.name LIKE '成都蜗牛%' AND d.`name` = '教学部' 
+
+AND e.salary > ( SELECT AVG(salary) 
+
+​				FROM employee 
+
+​				LEFT JOIN department d ON e.deptId = d.id
+
+​				WHERE  d.`name` = '教学部' );
+
+38）查询成都蜗牛学苑男女的人数
+
+SELECT 
+c.name,
+COUNT(case WHEN e.ismale=1 THEN e.id END) AS 男,
+COUNT(case WHEN e.ismale=0 THEN e.id END) AS 女
+FROM employee e
+LEFT JOIN department d ON e.deptId = d.id
+LEFT JOIN company c ON d.companyId = c.id
+WHERE c.name LIKE '成都蜗牛%'
+GROUP BY c.name;
+
+39）查询成都蜗牛学苑所有姓及其对应的人数
+
+SELECT 
+
+ LEFT(e.name, 1) 姓氏,
+	COUNT(e.id) 人数
+FROM employee e
+LEFT JOIN department d ON e.deptId = d.id
+LEFT JOIN company c ON d.companyId = c.id
+WHERE c.name LIKE '成都蜗牛%'
+GROUP BY LEFT(e.name, 1);
+
+40）查询成都蜗牛学苑所有名字为两个字和三个字的员工对应人数
+
+SELECT 
+	CHAR_LENGTH(e.name) 名字字数,
+	COUNT(e.id) 人数
+FROM employee e
+LEFT JOIN department d ON e.deptId = d.id
+LEFT JOIN company c ON d.companyId = c.id
+WHERE c.name LIKE '成都蜗牛%'  AND CHAR_LENGTH(e.name) IN (2, 3)
+GROUP BY CHAR_LENGTH(e.name);
+
+41）查询所有员工中，入职5年以内和入职5年以上的员工对应人数
+
+SELECT 
+    CASE 
+        WHEN TIMESTAMPDIFF(YEAR, e.joinDate, CURDATE()) < 5 THEN '入职5年以内'
+        ELSE '入职5年以上'
+    END AS 入职年限分类,
+		COUNT(e.id)
+FROM employee e
+LEFT JOIN department d ON e.deptId = d.id
+LEFT JOIN company c ON d.companyId = c.id
+WHERE c.name LIKE '成都蜗牛学苑%'
+GROUP BY 入职年限分类;
+
+42）查询每个公司每个月的总支出薪水，并按照从低到高排序
+
+SELECT
+c.`name` 公司,
+SUM(e.salary) 每个月总薪水
+FROM employee e
+LEFT JOIN department d ON e.deptId = d.id
+LEFT JOIN company c ON d.companyId = c.id
+GROUP BY c.`name`
+ORDER BY SUM(e.salary) DESC;
+

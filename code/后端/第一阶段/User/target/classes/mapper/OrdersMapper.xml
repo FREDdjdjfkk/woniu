@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.OrdersMapper">
+    <resultMap id="ordersmapper" type="pojo.Orders">
+        <id property="oid" column="oid"/>
+        <result column="order_date" property="order_date" />
+        <result column="money" property="money"/>
+        <result column="desc" property="desc"/>
+        <result column="uid" property="uid"/>
+
+
+        <collection property="plist" ofType="pojo.Product">
+            <id property="pid" column="pid"/>
+            <result column="pname" property="pname"/>
+            <result column="price" property="price"/>
+            <result column="prodnumber" property="prodnumber"/>
+        </collection>
+    </resultMap>
+
+
+    <select id="selectOrders" resultMap="ordersmapper">
+        select * from t_order o join t_order_pro op on o.oid=op.oid join t_product p on p.pid=op.pid
+    </select>
+
+    <select id="seOrder"  resultType="pojo.Orders">
+        select * from t_order where uid=#{uid}
+    </select>
+</mapper>

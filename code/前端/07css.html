@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span{
+            color: rgb(231, 231, 0);
+            font-size: 30px;
+        }
+        .p1{
+            color: antiquewhite;
+            background-color: aliceblue;
+            font-size: 30px;
+            text-align: center;
+        }
+        #p1{color: brown;
+            background-color: aqua;
+            font-size: 10px;
+            text-align: left;
+        }
+        .p1.p2 span{
+            color: rgb(43, 226, 43);
+        }
+    </style>
+</head>
+<body>
+    <p class="p1">这是类选择器</p>
+    <span id="p1">这是id选择器</span>
+    <span>标签</span>
+
+    <p class="p1" class="p2"><span>交集选择器</span></p>
+</body>
+</html>

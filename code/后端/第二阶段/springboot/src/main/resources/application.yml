@@ -1,0 +1,52 @@
+server:
+port: 8089
+servlet:
+  context-path: /springboot
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/my_product?serverTimezone=GMT
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 239611
+    #type:   指定数据库连接池
+    type: com.alibaba.druid.pool.DruidDataSource  #数据库连接池(数据源)
+stu:
+  sid: 1001
+  sname: 李鹏程
+  telephone: 15228116591
+  birthday: 2003/04/27
+  panda: {pid: 23,pname: npc,age: 2}
+  likes:
+    - bamboo
+    - sleeping
+    - climbing
+  cities:
+    - Chengdu
+    - Chongqing
+    - Guangzhou
+  details:
+    color: black-white
+    weight: 120
+    isWild: true
+
+owner:
+  id: 23
+  username: 李鹏程
+  tel: 15228116591
+  sex: 男
+  identity: 511324200304270072
+  house_id: 9
+  remarks: handsome
+  password: 123
+  isDelete: 0
+  deltime: null
+#配置分页相关信息
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+#mybatis配置
+mybatis:
+  mapper-locations: classpath:com/lpc/mapper/*.xml
+  type-aliases-package: com.lpc.bean

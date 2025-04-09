@@ -1,0 +1,41 @@
+<!-- resources/mapper/OwnerMapper.xml -->
+<mapper namespace="com.example.mapper.OwnerMapper">
+
+    <select id="findByConditions" resultType="Owner">
+        SELECT * FROM owner
+        <where>
+            <if test="id != null and id != 0">
+                AND id =#{id}
+            </if>
+            <if test="username != null and username != ''">
+                AND username LIKE CONCAT('%', #{username}, '%')
+            </if>
+            <if test="tel != null and tel != ''">
+                AND tel LIKE CONCAT('%', #{tel}, '%')
+            </if>
+            <if test="sex != null and sex != ''">
+                AND sex = #{sex}
+            </if>
+            <if test="identity != null and identity != ''">
+                AND identity LIKE CONCAT('%', #{identity}, '%')
+            </if>
+            <if test="houseId != null">
+                AND house_id = #{houseId}
+            </if>
+            <if test="remarks != null and remarks != ''">
+                AND remarks LIKE CONCAT('%', #{remarks}, '%')
+            </if>
+            <if test="password != null and password != ''">
+                AND password = #{password}
+            </if>
+            <if test="isDelete != null">
+                AND isDelete = #{isDelete}
+            </if>
+            <if test="deltime != null">
+                AND deltime = #{deltime}
+            </if>
+
+        </where>
+    </select>
+
+</mapper>

@@ -16,7 +16,7 @@ public class OwnerTest {
     public void testAdd(){
         System.out.println(owner);
         ownerController.addOwner(owner);
-        System.out.println("成功添加"+owner);
+        System.out.println("成功添加: "+owner);
     }
     @Test
     public void testDelete(){
@@ -29,12 +29,15 @@ public class OwnerTest {
         //可以添加由id查找
         owner.setUsername("lpc");
         ownerController.modifyOwnerById(owner);
+        System.out.println(ownerController.findByConditions(1, 1, owner));
+
+        ownerController.deleteOwnerByName(owner.getUsername());
     }
     @Test
     public void testSelect(){
         Owner owner1=new Owner();
         owner1.setSex("女");
         owner1.setIsDelete(0);
-        ownerController.findByConditions(1,2,owner1);
+        ownerController.findByConditions(1,2,owner1).forEach(System.out::println);
     }
 }

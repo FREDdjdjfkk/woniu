@@ -4,7 +4,7 @@ servlet:
   context-path: /springboot
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/my_product?serverTimezone=GMT
+    url: jdbc:mysql://localhost:3306/spring?serverTimezone=GMT
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 239611
@@ -39,7 +39,7 @@ owner:
   remarks: handsome
   password: 123
   isDelete: 0
-  deltime: null
+#  deltime: 2025-04-10 12:00:00
 #配置分页相关信息
 pagehelper:
   helperDialect: mysql
@@ -48,5 +48,5 @@ pagehelper:
   params: count=countSql
 #mybatis配置
 mybatis:
-  mapper-locations: classpath:com/lpc/mapper/*.xml
+  mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.lpc.bean

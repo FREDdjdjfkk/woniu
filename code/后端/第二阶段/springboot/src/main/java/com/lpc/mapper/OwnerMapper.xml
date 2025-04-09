@@ -1,5 +1,5 @@
 <!-- resources/mapper/OwnerMapper.xml -->
-<mapper namespace="com.example.mapper.OwnerMapper">
+<mapper namespace="com.lpc.mapper.OwnerMapper">
 
     <select id="findByConditions" resultType="Owner">
         SELECT * FROM owner

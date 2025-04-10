@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-//@Mapper
+@Mapper
 public interface OwnerMapper {
     @Insert("insert into owner values(#{id},#{username},#{tel},#{sex},#{identity},#{house_id},#{remarks},#{password},#{isDelete},#{deltime})")
     public void addOwner(Owner owner);
